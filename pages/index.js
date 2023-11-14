@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import client from "../client";
 import { cleanAndTransformBlocks } from "../utils/cleanAndTransformBlocks";
 import { BlockRenderer } from "components/BlockRenderer";
+import { mapMainMenuItems } from "utils/mapMainMenuItems";
 
 export default function Home(props) {
 console.log(props);
@@ -16,20 +17,46 @@ console.log(props);
 export const getStaticProps = async () => {
   const {data} = await client.query({
     query: gql`
- query NewQuery {
+ query PageQuery {
   nodeByUri(uri: "/") {
     ... on Page {
       id
+      title
       blocks
+    }
+  }
+  acfOptionsMainMenu {
+    mainMenu {
+      menuItems {
+        menuItem {
+          destination {
+            ... on Page {
+              uri
+            }
+          }
+          label
+        }
+        items {
+          destination {
+            ... on Page {
+              uri
+            }
+          }
+          label
+        }
+      }
     }
   }
 }
     `,
   });
+  const blocks =  cleanAndTransformBlocks(data.nodeByUri.blocks);
   return {
     props: {
-      blocks: cleanAndTransformBlocks(data.nodeByUri.blocks),
-    
+      mainMenuItems: mapMainMenuItems(
+        data.acfOptionsMainMenu.mainMenu.menuItems
+        ),
+        blocks,
     },
   };
 };
