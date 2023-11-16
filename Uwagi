@@ -1,3 +1,7 @@
 1. Po odcinku 15 pojawił się napis some example test
 na stronie głównej nad obrazkiem
 2. Dwa odcinki były stricte z wordpresem bez zmian w kodzie nexta
+3. przy tym commicie
+Create the CTA component in Next JS, to znaczy w trakcie jego robienia
+w pliku blockrenderer, nie działał mi console.log kiedy chcialem uzyc
+block
