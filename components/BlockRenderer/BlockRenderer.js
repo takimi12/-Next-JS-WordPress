@@ -10,6 +10,7 @@ import { theme } from "theme";
 export const BlockRenderer = ({blocks}) => {
     return blocks.map((block) => {
        switch(block.name) {
+
         case "acf/ctabutton":{
             return (
             <CallToActionButton 
@@ -29,6 +30,7 @@ export const BlockRenderer = ({blocks}) => {
             block.attributes.style?.color?.text}
              />;
         }
+        case "core/post-title":
         case 'core/heading': {
             return <Heading 
             key={block.id} 
