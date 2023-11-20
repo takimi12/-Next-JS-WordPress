@@ -1,7 +1,20 @@
+import { useEffect, useState } from 'react'
+import { Results } from './Results'
+
 export const PropertySearch = () => {
-    return (
-        <div>
-            <h1>Property Search</h1>
-        </div>
-    )
+        const [properties, setProperties] = useState([]);
+
+           useEffect(() => {
+                const search = async () => {
+                    const response = await fetch('/api/search');
+                    const data = await response.json();
+
+                    console.log("search data", data);
+                    setProperties(data.properties);
+                };
+                search();
+             }, []);
+             return (
+                <Results  properties={properties}/>
+                )
 }
