@@ -15,6 +15,11 @@ export const getPageStaticProps = async (context) => {
             title
             blocks
           }
+          ... on Property {
+            id
+            title
+            blocks
+          }
         }
         acfOptionsMainMenu {
           mainMenu {
@@ -59,8 +64,10 @@ export const getPageStaticProps = async (context) => {
             mainMenuItems: mapMainMenuItems(
               data.acfOptionsMainMenu.mainMenu.menuItems
               ),
-              callToActionLabel: data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
-              callToActionDestination: data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
+              callToActionLabel:
+               data.acfOptionsMainMenu.mainMenu.callToActionButton.label,
+              callToActionDestination: 
+              data.acfOptionsMainMenu.mainMenu.callToActionButton.destination.uri,
               blocks,
           },
         };

@@ -18,16 +18,22 @@ const {data} = await client.query({
             uri
           }
         }
+        properties {
+          nodes {
+            
+            uri
+          }
+        }
       }
     `,
 });
 
 return {
-    paths: data.pages.nodes.filter(page => page.uri !== "/").map(page => ({
+    paths: [...data.pages.nodes, ...data.properties.nodes].map(page => ({
         params:{
             slug: page.uri.substring(1, page.uri.length -1).split('/'),
         },
     })),
-    fallback: "blocking",
+    fallback: false,
 };
 };
