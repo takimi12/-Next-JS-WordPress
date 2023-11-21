@@ -14,26 +14,26 @@ export const PropertySearch = () => {
 
         const search = async () => {
           const {page, minPrice, maxPrice, hasParking, petFriendly} =
-           queryString.parse(window.location.search);
-            const filters = {};
-            if(minPrice) {
-              filters.minPrice = parseInt(minPrice);
-            }
-            if (maxPrice) {
-              filters.maxPrice = parseInt(maxPrice);
-            }
-            if (hasParking === "true") {
-              filters.hasParking = true;
-            }
-            if (petFriendly === "true") {
-              filters.petFriendly = true;
-            }
-           
+          queryString.parse(window.location.search);
+           const filters = {};
+           if(minPrice) {
+             filters.minPrice = parseInt(minPrice);
+           }
+           if (maxPrice) {
+             filters.maxPrice = parseInt(maxPrice);
+           }
+           if (hasParking === "true") {
+             filters.hasParking = true;
+           }
+           if (petFriendly === "true") {
+             filters.petFriendly = true;
+           }
+          
           const response = await fetch('/api/search', {
             method: 'POST',
             body: JSON.stringify({
               page: parseInt(page || "1"),
-              ...filters,
+              ...filters
             }),
           });
           const data = await response.json();
@@ -44,8 +44,14 @@ export const PropertySearch = () => {
       };
 
           const handlePageClick = async (pageNumber) => {
-          await  router.push(`${router.query.slug.join('/')}?page=${pageNumber}`, 
-          null,{
+            const {
+              petFriendly,
+              hasParking,
+              minPrice,
+              maxPrice,
+          } = queryString.parse(window.location.search);
+
+          await  router.push(`${router.query.slug.join('/')}?page=${pageNumber}&petFriendly=${petFriendly === true}&hasParking=${hasParking === true}&minPrice=${minPrice}&maxPrice=${maxPrice}`, null,{
               shallow: true,
             })
               search();
@@ -64,7 +70,6 @@ export const PropertySearch = () => {
           
               search();
           }
-
 
              return (
                <>

@@ -5,10 +5,11 @@ const handler = async (req, res) => {
     try{
         const filters = JSON.parse(req.body);
 
-        let hasParkingFilter = ``;
-        let petFriendlyFilter = ``;
-        let minPriceFilter = ``;
-        let maxPriceFilter = ``;
+
+        let hasParkingFilter  = '';
+        let petFriendlyFilter = '';
+        let minPriceFilter = '';
+        let maxPriceFilter  = '';
 
 
         if (filters.hasParking) {
@@ -33,7 +34,7 @@ const handler = async (req, res) => {
             minPriceFilter = `
             {
                 key: "price"
-                compare: GREATHER_THAN_OR_EQUAL_TO
+                compare: GREATER_THAN_OR_EQUAL_TO
                 value: "${filters.minPrice}"
                 type: NUMERIC
             },
@@ -50,12 +51,18 @@ const handler = async (req, res) => {
             `
         }
 
+
+
+
+
+
+
+
         const {data} = await client.query({
             query: gql`
             query AllPropertiesQuery {
-                properties(where: {
-                    offsetPagination: {size: 3, offset: ${
-                        ((filters.page || 1) -1 ) * 3
+                properties(where: {offsetPagination: {size: 3, offset:
+                ${((filters.page || 1) -1 ) * 3
                 }}
                 metaQuery:{
                     relation: AND
