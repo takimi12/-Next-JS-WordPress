@@ -57,7 +57,7 @@ import { useState } from "react";
                  />
                 </div>
             <div className="btn"
-            onClick={}
+            onClick={handleSearch}
             >Search</div>
         </div>
      );
