@@ -38,10 +38,15 @@ export const PropertySearch = () => {
           search();
           }, []);
 
+          const handleSearch = ({petFriendly, hasParking, minPrice, maxPrice}) => {
+          
+          
+          }
+
 
              return (
                <>
-                <Filters />
+                <Filters onSearch={handleSearch} />
                 <Results  properties={properties}/>
                 <Pagination 
                 onPageClick={handlePageClick}
