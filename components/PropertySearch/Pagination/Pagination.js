@@ -1,4 +1,4 @@
-export  const Pagination = ({totalPages}) => {
+export  const Pagination = ({totalPages, onPageClick}) => {
     return ( 
         <div className="
         max-w-5xl
@@ -8,7 +8,10 @@ export  const Pagination = ({totalPages}) => {
         justify-center
         gap-2">
             {Array.from({length: totalPages}).map((_,i) =>(
-                <div key={i}  className="btn">
+                <div 
+                key={i} 
+                onClick={() => onPageClick(i + 1)}
+                className="btn">
                     {i + 1}
                     </div>
             ))}
