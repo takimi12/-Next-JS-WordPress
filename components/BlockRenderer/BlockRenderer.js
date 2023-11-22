@@ -80,12 +80,21 @@ export const BlockRenderer = ({blocks}) => {
             )
         }
         case "core/columns": {
-            return <Columns 
+            return(
+             <Columns 
             key={block.id} 
-            isstackOnMobile={block.attributes.stackOnMobile}>
+            isStackedOnMobile={block.attributes.isStackedOnMobile}
+            textColor={
+                theme[block.attributes.textColor] ||
+                block.attributes.style?.color?.text}
+            backgroundColor={
+                theme[block.attributes.backgroundColor] || 
+                block.attributes.style?.color?.background}
+            >
             <BlockRenderer blocks={block.innerBlocks} />
             </Columns>
-                ;
+                
+            )
         }
         case "core/column": {
             return( 
@@ -113,7 +122,7 @@ export const BlockRenderer = ({blocks}) => {
             )
         }
         default:{
-          console.log("unkown", block);
+
             return null;
         }
         }
