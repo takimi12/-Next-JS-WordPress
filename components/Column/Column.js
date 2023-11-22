@@ -9,3 +9,4 @@ const backgroundColorStyle = backgroundColor ? {backgroundColor} :{};
         <div style={{...widthStyle, ...textColorStyle, ...backgroundColorStyle}} className="px-2 py-5">{children}</div>
     )
 }
+
