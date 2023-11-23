@@ -77,6 +77,8 @@ export const getPage = async (uri) => {
         body: JSON.stringify(params)
     })
     const {data} = await response.json();
+    if(!data?.nodeByUri) return null;
+
     const blocks =  cleanAndTransformBlocks(data.nodeByUri.blocks);
 
     return blocks;
