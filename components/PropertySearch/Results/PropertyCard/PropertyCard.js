@@ -18,12 +18,12 @@ export const PropertyCard = ({
         <Link
         className="border-2 border-gray-200  rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
         href={destinations}>
-            <div className="flex w-full  ">
+            <div className="flex w-full h-[200px] relative ">
                 <Image src={image} 
-                height={300} 
-                width={400} 
                 className="object-cover max-h-none"
-                alt=""
+                fill
+                sizes="200px"
+            alt=""
                 />
             </div>
             <div className="mt-3 text-lg font-bold">{title}</div>
@@ -37,7 +37,7 @@ export const PropertyCard = ({
                 <FontAwesomeIcon icon={faBed} />
                 <span className="pt-2"> {bedrooms} bedrooms</span>
                 </div>
-            </div>
+                </div>
             {(!!hasParking || !!petFriendly) && (
                 <div className="flex justify-between text-sm mt-3">
                 <div>
