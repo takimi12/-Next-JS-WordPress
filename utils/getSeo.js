@@ -1,19 +1,23 @@
-import { cleanAndTransformBlocks } from "./cleanAndTransformBlocks";
 
-export const getPage = async (uri) => {
+export const getSeo = async (uri) => {
     const params = {
         query:`
-        query PageQuery($uri: String!) {
+        query SeoQuery($uri: String!) {
          nodeByUri(uri: $uri) {
-           ... on Page {
-             blocks
+          ... on Page {
+             seo {
+               title
+               metaDesc
+             }
            }
            ... on Property {
-             blocks
+             seo{
+               title
+               metaDesc
+             }
            }
          }
-         }
-       
+       }
            `,
            variables:{
             uri,
@@ -28,9 +32,8 @@ export const getPage = async (uri) => {
         body: JSON.stringify(params)
     })
     const {data} = await response.json();
-    if(!data?.nodeByUri) return null;
-
-    const blocks =  cleanAndTransformBlocks(data.nodeByUri.blocks);
-
-    return blocks;
+    if(!data?.nodeByUri) {
+    return null;
+    }
+    return data.nodeByUri.seo;
 }
