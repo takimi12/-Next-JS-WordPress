@@ -137,7 +137,6 @@ export const BlockRenderer = ({blocks}) => {
         }
         default:{
 
-            console.log("Block not found", block);
             return null;
         }
         }
