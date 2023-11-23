@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./utils/**/*.js",
   ],
@@ -9,8 +10,8 @@ module.exports = {
     extend: {
       fontFamily: {
         // font-heading font-body
-        heading: ["Aboreto", "cursive"],
-        body: ["Poppins", "sans-serif"],
+        heading: "var{--font-aboreto",
+        body: "var(--font-poppins)",
       },
     },
   },
